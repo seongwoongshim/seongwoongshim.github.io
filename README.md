@@ -17,7 +17,7 @@ cv/build-info.json              produced by CI — drives the "compiled …" lin
 
 ## 1. First-time setup
 
-1. Create a repository named **`tlatjddnd101.github.io`** and push these files to `main`.
+1. Create a repository named **`seongwoongshim.github.io`** and push these files to `main`.
 2. **Settings → Pages → Build and deployment → Source: `GitHub Actions`.**
    (Not "Deploy from a branch" — this repo deploys through the workflow.)
 3. Drop a square photo at `assets/img/profile.jpg` (see `assets/img/README.md`).
@@ -26,7 +26,7 @@ cv/build-info.json              produced by CI — drives the "compiled …" lin
    change to `PROFILE.photo` in `assets/js/data.js`.
 
 Everything else is already filled in: the site, the CV and the workflow all point at
-`tlatjddnd101` / `tlatjddnd101.github.io`.
+`seongwoongshim` / `seongwoongshim.github.io`.
 
 ## 2. How the CV pipeline works
 

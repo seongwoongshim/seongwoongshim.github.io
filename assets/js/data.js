@@ -3,8 +3,8 @@
    ============================================================ */
 
 const SITE = {
-  github: "tlatjddnd101",
-  repo:   "tlatjddnd101.github.io",
+  github: "seongwoongshim",
+  repo:   "seongwoongshim.github.io",
 };
 
 const PROFILE = {
@@ -16,7 +16,7 @@ const PROFILE = {
   photo: "assets/img/profile.jpg",      // square image; set to "" to hide the photo entirely
   links: [
     { label: "Google Scholar", url: "https://scholar.google.com/citations?user=gMlzJjYAAAAJ" },
-    { label: "GitHub",         url: "https://github.com/tlatjddnd101" },
+    { label: "GitHub",         url: "https://github.com/seongwoongshim" },
     { label: "LinkedIn",       url: "https://www.linkedin.com/in/seongwoong-shim-278221251/" },
     { label: "CV (PDF)",       url: "cv/cv.pdf" },
   ],
