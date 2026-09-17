@@ -1,0 +1,13 @@
+# build artefacts — GitHub Actions produces these on every push
+cv.pdf
+build-info.json
+
+# LaTeX intermediates
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg

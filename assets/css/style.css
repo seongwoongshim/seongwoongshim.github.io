@@ -1,0 +1,193 @@
+/* =========================================================
+   Seongwoong Shim — personal site
+   Proportions and typography follow the al-folio layout:
+   930px container (900px content), Roboto 300, 40/32px light
+   headings, 22% floated profile photo, 2/12 + 8/12 publication rows.
+   ========================================================= */
+
+:root {
+  --bg:      #ffffff;
+  --text:    #000000;
+  --muted:   #4f4f4f;
+  --faint:   #828282;
+  --rule:    #e5e5e5;
+  --accent:  #3b4a6b;      /* publication badges */
+  --accent-t:#ffffff;
+  --link:    #3a6bbf;      /* hyperlinks */
+  --link-u:  rgba(58, 107, 191, .28);
+  --code-bg: #f5f5f5;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg:      #1c1c1d;
+  --text:    #e8e8e8;
+  --muted:   #b0b0b0;
+  --faint:   #8e8e8e;
+  --rule:    #333436;
+  --accent:  #9fb0d6;
+  --accent-t:#16181c;
+  --link:    #8fabdd;
+  --link-u:  rgba(143, 171, 221, .35);
+  --code-bg: #262728;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;                /* 24px, as on the reference site */
+}
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--link-u);
+  text-underline-offset: 3px;
+  transition: text-decoration-color .12s ease;
+}
+a:hover { text-decoration-color: var(--link); }
+
+/* links that are already their own affordance keep the plain treatment */
+.navbar a, .btn, .badge { text-decoration: none; }
+.navbar nav a { color: var(--text); font-weight: 400; }
+.navbar nav a:hover { color: var(--link); }
+
+strong, b { font-weight: 600; }
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .85em; background: var(--code-bg);
+  border-radius: 3px; padding: .1em .35em;
+}
+
+/* ───────── container: 930px incl. 15px gutters ───────── */
+.container { max-width: 930px; margin: 0 auto; padding-left: 15px; padding-right: 15px; }
+.mt-5 { margin-top: 48px; }
+
+/* ───────── navbar ───────── */
+.navbar {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--bg); border-bottom: 1px solid var(--rule);
+}
+.navbar .container { display: flex; align-items: center; gap: 16px; height: 57px; }
+.navbar-brand { font-size: 16px; font-weight: 500; color: var(--text); white-space: nowrap; }
+.navbar-brand:hover { text-decoration: none; }
+.navbar nav { margin-left: auto; display: flex; gap: 18px; }
+.navbar nav a { font-size: 16px; }
+.theme-btn {
+  display: inline-grid; place-items: center; flex: none;
+  width: 30px; height: 30px; padding: 0; cursor: pointer;
+  background: none; border: 1px solid var(--rule); border-radius: 2px; color: var(--muted);
+}
+.theme-btn:hover { color: var(--text); }
+
+/* ───────── headings ───────── */
+h1 { font-size: 40px; font-weight: 700; line-height: 1.15; margin: 0 0 8px; letter-spacing: -.01em; }
+h2 { font-size: 32px; font-weight: 300; line-height: 1.2;  margin: 0 0 8px; }
+h3 { font-size: 24px; font-weight: 300; line-height: 1.25; margin: 32px 0 8px; }
+
+p { margin: 0 0 16px; }
+
+/* ───────── about / profile ───────── */
+/* the text column and the photo start and end on the same line */
+.about-row { display: flex; align-items: stretch; gap: 1rem; }
+.about-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+.about-text > *:last-child { margin-bottom: 0; }
+
+.desc { color: var(--muted); margin-bottom: 20px; }
+
+
+.profile { flex: 0 0 22%; max-width: 22%; }   /* 198 / 900, as on the reference site */
+.profile figure { margin: 0; height: 100%; }
+.profile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.profile-placeholder {
+  width: 100%; height: 100%; min-height: 220px;
+  background: var(--code-bg); border: 1px solid var(--rule);
+  display: grid; align-content: center; justify-items: center; gap: 6px;
+  text-align: center; padding: 0 8px;
+}
+.profile-initials { font-size: 28px; font-weight: 400; color: var(--faint); }
+.profile-hint {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px; color: var(--faint); word-break: break-all; line-height: 1.3;
+}
+
+.contact { margin: 0 0 6px; }
+.contact-label { color: var(--muted); }
+.socials { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 20px; }
+
+
+/* ───────── research interest ───────── */
+.interest-list { margin: 0; padding-left: 20px; }
+.interest-list li { margin-bottom: 6px; }
+.interest-list strong { font-weight: 600; }
+
+/* ───────── publications (2/12 + 8/12 rows) ───────── */
+.legend { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+
+.publications { list-style: none; margin: 32px 0 0; padding: 0; }
+.publications li { margin: 0 0 16px; padding: 0; }
+
+.row { display: flex; margin-left: -15px; margin-right: -15px; }
+.col-abbr { flex: 0 0 16.6667%; max-width: 16.6667%; padding: 0 15px; }
+.col-body { flex: 0 0 66.6667%; max-width: 66.6667%; padding: 0 15px; }
+
+.badge {
+  display: inline-block; width: 100%; text-align: center;
+  background: var(--accent); color: var(--accent-t);
+  font-size: 12px; font-weight: 700; line-height: 1.2;
+  padding: 3px 5px; border-radius: 4px;
+  text-decoration: none; border: 0;
+}
+
+.pub-id { color: var(--faint); font-weight: 400; margin-right: 6px; }
+.title { font-size: 16px; font-weight: 500; }
+.author { font-size: 16px; font-weight: 400; }
+.author .me { font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.periodical { font-size: 16px; font-weight: 400; }
+.periodical em { font-style: italic; }
+.links { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+.btn {
+  font-size: 10.24px; line-height: 1.5; font-weight: 400;
+  padding: 4px 16px; border: 1px solid var(--text); border-radius: 2px;
+  color: var(--text); background: none; text-transform: none; font-weight: 500;
+}
+.btn:hover { background: var(--text); color: var(--bg); text-decoration: none; }
+
+/* ───────── footer ───────── */
+.footer {
+  margin-top: 56px; border-top: 1px solid var(--rule);
+  color: var(--faint); font-size: 14px;
+}
+.footer .container {
+  display: flex; flex-wrap: wrap; gap: 4px 18px;
+  justify-content: space-between; padding-top: 18px; padding-bottom: 32px;
+}
+
+/* ───────── responsive ───────── */
+@media (max-width: 767px) {
+  .row { flex-direction: column; }
+  .col-abbr, .col-body { flex: 1 1 auto; max-width: 100%; }
+  .col-abbr { margin-bottom: 6px; }
+  .badge { width: auto; padding: 3px 10px; }
+}
+@media (max-width: 575px) {
+  h1 { font-size: 32px; }
+  h2 { font-size: 26px; }
+  h3 { font-size: 21px; }
+  .about-row { flex-direction: column-reverse; gap: 20px; }
+  .profile { flex: none; width: 60%; max-width: 220px; }
+  .profile-placeholder { aspect-ratio: 270 / 347; height: auto; }
+  .navbar nav { gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

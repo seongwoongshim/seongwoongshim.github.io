@@ -1,0 +1,196 @@
+%==============================================================
+%  Seongwoong Shim — Curriculum Vitae
+%  Compiled automatically by GitHub Actions on every push.
+%  Engine: pdflatex.  No custom fonts; icons degrade gracefully.
+%==============================================================
+\documentclass[10.5pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{charter}                       % body serif
+\usepackage[scaled=0.92]{helvet}           % sans for headings
+\usepackage{microtype}
+\usepackage[a4paper, top=1.6cm, bottom=1.5cm, left=1.9cm, right=1.9cm, footskip=0.8cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[hidelinks]{hyperref}
+
+% Icons if the TeX installation has them; silently omitted otherwise.
+\IfFileExists{fontawesome5.sty}{%
+  \usepackage{fontawesome5}%
+  \newcommand{\ic}[1]{\csname fa#1\endcsname\hspace{0.35em}}%
+}{%
+  \newcommand{\ic}[1]{}%
+}
+
+%-------------------------------------------------- metadata
+\newcommand{\CVNAME}{Seongwoong Shim}
+\newcommand{\CVEMAIL}{ssw030830@korea.ac.kr}
+\newcommand{\CVSITE}{https://tlatjddnd101.github.io}
+\newcommand{\CVGITHUB}{https://github.com/tlatjddnd101}
+\newcommand{\CVSCHOLAR}{https://scholar.google.com/citations?user=gMlzJjYAAAAJ}
+\newcommand{\CVLINKEDIN}{https://www.linkedin.com/in/seongwoong-shim-278221251/}
+
+\hypersetup{pdftitle={\CVNAME{} --- Curriculum Vitae}, pdfauthor={\CVNAME}, colorlinks=false}
+
+%-------------------------------------------------- style
+\definecolor{ink}{HTML}{1A1A1C}
+\definecolor{muted}{HTML}{5A6068}
+\definecolor{rule}{HTML}{C9CCD2}
+\color{ink}
+
+\titleformat{\section}
+  {\normalfont\sffamily\bfseries\large\color{ink}}
+  {}{0pt}{}[\vspace{-6pt}{\color{ink}\rule{\textwidth}{0.8pt}}]
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+\setlist[itemize]{leftmargin=1.2em, itemsep=2pt, topsep=3pt, parsep=0pt}
+\setlength{\parindent}{0pt}
+
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\footnotesize\sffamily\color{muted}\CVNAME{} \textperiodcentered{} Curriculum Vitae \textperiodcentered{} \today \quad \thepage/\pageref{LastPage}}
+
+%-------------------------------------------------- helpers
+% left block + right-aligned date / venue
+\newcommand{\entry}[2]{%
+  \noindent
+  \begin{minipage}[t]{0.765\textwidth}\raggedright\strut #1\strut\end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.215\textwidth}\raggedleft\strut{\small\sffamily\color{muted}#2}\strut\end{minipage}%
+  \par\vspace{1pt}}
+
+\newcommand{\note}[1]{{\small\color{muted}#1}\par\vspace{9pt}}
+\newcommand{\subline}[1]{{\small\color{muted}--- #1}\par}
+\newcommand{\me}[1]{\underline{\textbf{#1}}}
+
+\newcommand{\paperlink}[2]{\href{#2}{\small\color{muted}[#1]}}
+
+% #1 label  #2 title  #3 authors  #4 full venue  #5 short venue  #6 links
+\newcommand{\cvpub}[6]{%
+  \entry{{\small\color{muted}[#1]}\quad\textbf{#2}}{#5}
+  \note{#3\\ #4\ifx\relax#6\relax\else\quad#6\fi}}
+
+%==============================================================
+\begin{document}
+
+%----------------------------------------------------- header
+{\sffamily\bfseries\fontsize{24}{27}\selectfont \CVNAME\par}
+\vspace{4pt}
+{\sffamily\small\color{muted}
+ Ph.D. Candidate @ Korea University \textbar{} Department of Artificial Intelligence\par}
+\vspace{5pt}
+{\small\sffamily\color{muted}
+ \href{mailto:\CVEMAIL}{\ic{Envelope}\CVEMAIL}\quad
+ \href{\CVSITE}{\ic{Home}Personal Page}\quad
+ \href{\CVSCHOLAR}{\ic{GraduationCap}Google Scholar}\quad
+ \href{\CVLINKEDIN}{\ic{Linkedin}LinkedIn}\quad
+ \href{\CVGITHUB}{\ic{Github}GitHub}\par}
+\vspace{3pt}
+{\color{rule}\rule{\textwidth}{0.6pt}}
+
+%----------------------------------------------------- research interest
+\section*{Research Interest}
+I push the boundaries of intelligent systems by leveraging \textbf{reinforcement learning}
+to enhance both the performance and efficiency of \textbf{modern foundation models}.
+\begin{itemize}
+  \item \textbf{Enhancing Foundation Models:} Language Models [C6], Multimodal Models [C5], Diffusion Models [C2]
+  \item \textbf{Reinforcement Learning:} Offline Learning [C1, C4], Skill Discovery [C3]
+\end{itemize}
+
+%----------------------------------------------------- education
+\section*{Education}
+
+\entry{\textbf{Korea University}, Integrated M.S.\ \& Ph.D.}{Mar.\ 2022 -- Present}
+\subline{Department of Artificial Intelligence (GPA: 4.25/4.5)}
+\subline{Advisor: Prof.\ Byung-Jun Lee}
+\vspace{11pt}
+
+\entry{\textbf{Academic Credit Bank System}, B.S.}{Oct.\ 2020 -- Feb.\ 2022}
+\subline{Department of Computer Engineering (GPA: 4.46/4.5)}
+
+% %----------------------------------------------------- work experience
+% \section*{Work Experience}
+%
+% \entry{\textbf{Shinhan AI}, Undergraduate Engineering Intern}{Mar.\ 2020 -- Aug.\ 2020}
+% \vspace{8pt}
+%
+% \entry{\textbf{Meta GenAI}, Ph.D.\ Research Intern (Manager: Artsiom Sanakoyeu)}{Jun.\ 2024 -- Nov.\ 2024}
+
+%----------------------------------------------------- selected publications
+\section*{Selected Publications}
+{\small\color{muted}*: equal contribution / P: pre-print / C: conference / J: journal / w: workshop}
+\vspace{8pt}
+
+\cvpub{C6}
+  {Beyond RAG vs. Long-Context: Learning Distraction-Aware Retrieval for Efficient Knowledge Grounding}
+  {\me{Seongwoong Shim*}, Myunsoo Kim*, Jae Hyeon Cho, Byung-Jun Lee}
+  {International Conference on Learning Representations (ICLR 2026)}
+  {ICLR 2026}
+  {\paperlink{arXiv}{https://arxiv.org/abs/2509.21865}\,\paperlink{Code}{https://github.com/ku-dmlab/LDAR}}
+
+\cvpub{C5}
+  {FALCON: False-Negative Aware Learning of Contrastive Negatives in Vision-Language Pretraining}
+  {Myunsoo Kim*, \me{Seongwoong Shim*}, Byung-Jun Lee}
+  {Conference on Computer Vision and Pattern Recognition (CVPR 2026)}
+  {CVPR 2026}
+  {\paperlink{arXiv}{https://arxiv.org/abs/2505.11192}\,\paperlink{Code}{https://github.com/ku-dmlab/FALCON}}
+
+%----------------------------------------------------- other publications
+\section*{Other Publications}
+
+\cvpub{J1}
+  {Neural MCTS with LLM Guidance for Effective Program Synthesis on Abstraction and Reasoning Corpus}
+  {Jinwoo Jeon, \me{Seongwoong Shim}, Sejin Kim, Sundong Kim, Byung-Jun Lee}
+  {Machine Learning (ECML PKDD 2026 Journal Track) 2026}
+  {ECML PKDD 2026}
+  {\paperlink{Paper}{https://link.springer.com/article/10.1007/s10994-026-07110-1}}
+
+\cvpub{C4}
+  {Prior-Guided Diffusion Planning for Offline Reinforcement Learning}
+  {Donghyeon Ki, JunHyeok Oh, \me{Seongwoong Shim}, Byung-Jun Lee}
+  {Neural Information Processing Systems (NeurIPS 2025)}
+  {NeurIPS 2025}
+  {\paperlink{arXiv}{https://arxiv.org/abs/2505.10881}\,\paperlink{Code}{https://github.com/ku-dmlab/PG}}
+
+\cvpub{C3}
+  {NBDI: A Simple and Effective Termination Condition for Skill Extraction from Task-Agnostic Demonstrations}
+  {Myunsoo Kim*, Hayeong Lee*, \me{Seongwoong Shim}, JunHo Seo, Byung-Jun Lee}
+  {International Conference on Machine Learning (ICML 2025)}
+  {ICML 2025}
+  {\paperlink{arXiv}{https://arxiv.org/abs/2501.12668}\,\paperlink{Code}{https://github.com/ku-dmlab/NBDI}}
+
+\cvpub{C2}
+  {Adaptive Non-Uniform Timestep Sampling for Accelerating Diffusion Model Training}
+  {Myunsoo Kim*, Donghyeon Ki*, \me{Seongwoong Shim}, Byung-Jun Lee}
+  {Conference on Computer Vision and Pattern Recognition (CVPR 2025)}
+  {CVPR 2025}
+  {\paperlink{arXiv}{https://arxiv.org/abs/2411.09998}\,\paperlink{Code}{https://github.com/ku-dmlab/Adaptive-Timestep-Sampler}}
+
+\cvpub{C1}
+  {Offline Imitation Learning by Controlling the Effective Planning Horizon}
+  {Hee-Jun Ahn*, \me{Seongwoong Shim*}, Byung-Jun Lee}
+  {International Conference on Pattern Recognition and Artificial Intelligence (ICPRAI 2024)}
+  {ICPRAI 2024}
+  {\paperlink{arXiv}{https://arxiv.org/abs/2401.09728}}
+
+% %----------------------------------------------------- academic services
+% \section*{Academic Services}
+%
+% \entry{\textbf{Teaching}}{}
+% \subline{TA, XAI613 Reinforcement Learning (Fall 2022)}
+% \subline{TA, XAI503 Optimization Theory (Fall 2022)}
+% \subline{TA, AA109 Probabilistic Graphical Models (Fall 2022)}
+% \subline{TA, Advanced Language AI (LG CNS) (Spring--Fall 2022)}
+% \vspace{8pt}
+%
+% \entry{\textbf{Conference Reviewer}}{}
+% \subline{Conference on Computer Vision and Pattern Recognition (CVPR) 2026}
+% \subline{Conference on Neural Information Processing Systems (NeurIPS) 2026}
+
+\end{document}

@@ -1,0 +1,94 @@
+# ─────────────────────────────────────────────────────────────
+#  Compile cv/cv.tex with a full TeX Live image, then publish
+#  the site + the freshly built cv.pdf to GitHub Pages.
+#
+#  One-time setup:
+#    Repo → Settings → Pages → Build and deployment
+#           Source: "GitHub Actions"
+# ─────────────────────────────────────────────────────────────
+name: Build CV and deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:          # lets you re-run the build by hand
+  schedule:
+    - cron: "0 3 1 * *"       # monthly rebuild so the "compiled" date stays fresh
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ---------- LaTeX ----------
+      - name: Compile cv.tex
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: cv.tex
+          working_directory: cv
+          latexmk_use_xelatex: false          # cv.tex is pdflatex-clean
+          args: -pdf -interaction=nonstopmode -halt-on-error -file-line-error
+
+      - name: Verify the PDF exists
+        run: |
+          test -s cv/cv.pdf || { echo "::error::cv.pdf was not produced"; exit 1; }
+          echo "cv.pdf  $(stat -c%s cv/cv.pdf) bytes"
+
+      # ---------- build metadata ----------
+      - name: Write build-info.json
+        run: |
+          cat > cv/build-info.json <<EOF
+          {
+            "built_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "commit": "${GITHUB_SHA}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "engine": "pdflatex (TeX Live, xu-cheng/latex-action)"
+          }
+          EOF
+          cat cv/build-info.json
+
+      # ---------- assemble the published site ----------
+      - name: Stage site
+        run: |
+          mkdir -p _site
+          rsync -a --exclude '.git' --exclude '.github' --exclude '_site' \
+                --exclude 'cv/*.aux' --exclude 'cv/*.log' --exclude 'cv/*.out' \
+                --exclude 'cv/*.fls' --exclude 'cv/*.fdb_latexmk' \
+                ./ _site/
+          touch _site/.nojekyll
+          ls -R _site | head -50
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      # keep the PDF downloadable from the Actions run too
+      - name: Upload cv.pdf as a workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdf
+          path: cv/cv.pdf
+          if-no-files-found: error
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
