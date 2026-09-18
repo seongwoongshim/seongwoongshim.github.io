@@ -11,11 +11,10 @@
   --muted:   #4f4f4f;
   --faint:   #828282;
   --rule:    #e5e5e5;
-  --accent:  #3b4a6b;      /* publication badges */
-  --accent-t:#ffffff;
   --link:    #3a6bbf;      /* hyperlinks */
   --link-u:  rgba(58, 107, 191, .28);
   --code-bg: #f5f5f5;
+  --thumb-ratio: 4 / 3;    /* publication thumbnails: 1 / 1 or 16 / 9 also work */
   color-scheme: light;
 }
 
@@ -25,8 +24,6 @@
   --muted:   #b0b0b0;
   --faint:   #8e8e8e;
   --rule:    #333436;
-  --accent:  #9fb0d6;
-  --accent-t:#16181c;
   --link:    #8fabdd;
   --link-u:  rgba(143, 171, 221, .35);
   --code-bg: #262728;
@@ -34,6 +31,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
@@ -58,7 +56,7 @@ a {
 a:hover { text-decoration-color: var(--link); }
 
 /* links that are already their own affordance keep the plain treatment */
-.navbar a, .btn, .badge { text-decoration: none; }
+.navbar a, .btn { text-decoration: none; }
 .navbar nav a { color: var(--text); font-weight: 400; }
 .navbar nav a:hover { color: var(--link); }
 
@@ -107,11 +105,13 @@ p { margin: 0 0 16px; }
 .desc { color: var(--muted); margin-bottom: 20px; }
 
 
-.profile { flex: 0 0 22%; max-width: 22%; }   /* 198 / 900, as on the reference site */
-.profile figure { margin: 0; height: 100%; }
-.profile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.profile { position: relative; flex: 0 0 22%; max-width: 22%; }   /* 198 / 900, as on the reference site */
+/* the figure is taken out of flow so the photo can never change the row's height:
+   the text column decides it, the photo fills it (centre-cropped) */
+.profile figure { position: absolute; inset: 0; margin: 0; }
+.profile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .profile-placeholder {
-  width: 100%; height: 100%; min-height: 220px;
+  position: absolute; inset: 0;
   background: var(--code-bg); border: 1px solid var(--rule);
   display: grid; align-content: center; justify-items: center; gap: 6px;
   text-align: center; padding: 0 8px;
@@ -132,22 +132,30 @@ p { margin: 0 0 16px; }
 .interest-list li { margin-bottom: 6px; }
 .interest-list strong { font-weight: 600; }
 
-/* ───────── publications (2/12 + 8/12 rows) ───────── */
+/* ───────── publications (3/12 thumbnail + 9/12 text) ───────── */
 .legend { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
 
 .publications { list-style: none; margin: 32px 0 0; padding: 0; }
-.publications li { margin: 0 0 16px; padding: 0; }
+.publications li { margin: 0 0 20px; padding: 0; }
 
 .row { display: flex; margin-left: -15px; margin-right: -15px; }
-.col-abbr { flex: 0 0 16.6667%; max-width: 16.6667%; padding: 0 15px; }
-.col-body { flex: 0 0 66.6667%; max-width: 66.6667%; padding: 0 15px; }
+.col-thumb { flex: 0 0 25%; max-width: 25%; padding: 0 15px; }
+.col-body  { flex: 0 0 75%; max-width: 75%; padding: 0 15px; }
 
-.badge {
-  display: inline-block; width: 100%; text-align: center;
-  background: var(--accent); color: var(--accent-t);
-  font-size: 12px; font-weight: 700; line-height: 1.2;
-  padding: 3px 5px; border-radius: 4px;
-  text-decoration: none; border: 0;
+/* fixed-ratio frame; the image covers it, the venue text sits behind as a fallback */
+.thumb {
+  position: relative; width: 100%; aspect-ratio: var(--thumb-ratio);
+  overflow: hidden; border-radius: 3px;
+  border: 1px solid var(--rule); background: var(--code-bg);
+  display: grid; place-items: center;
+}
+.thumb img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block; z-index: 1;
+}
+.thumb-fallback {
+  font-size: 12px; font-weight: 500; letter-spacing: .02em;
+  color: var(--faint); text-align: center; padding: 0 8px;
 }
 
 .pub-id { color: var(--faint); font-weight: 400; margin-right: 6px; }
@@ -177,17 +185,16 @@ p { margin: 0 0 16px; }
 /* ───────── responsive ───────── */
 @media (max-width: 767px) {
   .row { flex-direction: column; }
-  .col-abbr, .col-body { flex: 1 1 auto; max-width: 100%; }
-  .col-abbr { margin-bottom: 6px; }
-  .badge { width: auto; padding: 3px 10px; }
+  .col-thumb, .col-body { flex: 1 1 auto; max-width: 100%; }
+  .col-thumb { margin-bottom: 8px; }
+  .thumb { max-width: 240px; }
 }
 @media (max-width: 575px) {
   h1 { font-size: 32px; }
   h2 { font-size: 26px; }
   h3 { font-size: 21px; }
   .about-row { flex-direction: column-reverse; gap: 20px; }
-  .profile { flex: none; width: 60%; max-width: 220px; }
-  .profile-placeholder { aspect-ratio: 270 / 347; height: auto; }
+  .profile { flex: none; width: 60%; max-width: 220px; aspect-ratio: 270 / 347; }
   .navbar nav { gap: 14px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

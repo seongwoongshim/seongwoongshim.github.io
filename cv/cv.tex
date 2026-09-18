@@ -21,12 +21,11 @@
 \usepackage[hidelinks]{hyperref}
 
 % Icons if the TeX installation has them; silently omitted otherwise.
-\IfFileExists{fontawesome5.sty}{%
-  \usepackage{fontawesome5}%
-  \newcommand{\ic}[1]{\csname fa#1\endcsname\hspace{0.35em}}%
-}{%
-  \newcommand{\ic}[1]{}%
-}
+% (\ic is defined outside \IfFileExists on purpose: a #1 inside its
+%  argument is an "Illegal parameter number" error.)
+\newif\ifhasfa
+\IfFileExists{fontawesome5.sty}{\usepackage{fontawesome5}\hasfatrue}{\hasfafalse}
+\newcommand{\ic}[1]{\ifhasfa\csname fa#1\endcsname\hspace{0.35em}\fi}
 
 %-------------------------------------------------- metadata
 \newcommand{\CVNAME}{Seongwoong Shim}

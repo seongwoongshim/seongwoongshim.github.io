@@ -55,7 +55,12 @@
       .join("");
     return `<li>
       <div class="row">
-        <div class="col-abbr"><span class="badge">${esc(p.short || p.id)}</span></div>
+        <div class="col-thumb">
+          <div class="thumb">
+            ${p.thumb ? `<img src="${esc(p.thumb)}" alt="" loading="lazy" onerror="this.remove()" />` : ""}
+            <span class="thumb-fallback">${esc(p.short || p.id)}</span>
+          </div>
+        </div>
         <div class="col-body">
           <div class="title"><span class="pub-id">[${esc(p.id)}]</span>${esc(p.title)}</div>
           <div class="author">${authors(p.authors)}</div>

@@ -35,7 +35,8 @@ const ME = "Seongwoong Shim";
 const SELECTED = [
   {
     id: "C6",
-    short: "ICLR 2026",   // text shown in the badge
+    short: "ICLR 2026",   // venue text (shown in the placeholder until a thumbnail exists)
+    thumb: "assets/img/pubs/C6.png",
     title: "Beyond RAG vs. Long-Context: Learning Distraction-Aware Retrieval for Efficient Knowledge Grounding",
     authors: ["Seongwoong Shim*", "Myunsoo Kim*", "Jae Hyeon Cho", "Byung-Jun Lee"],
     venue: "International Conference on Learning Representations (ICLR 2026)",
@@ -46,7 +47,8 @@ const SELECTED = [
   },
   {
     id: "C5",
-    short: "CVPR 2026",   // text shown in the badge
+    short: "CVPR 2026",   // venue text (shown in the placeholder until a thumbnail exists)
+    thumb: "assets/img/pubs/C5.png",
     title: "FALCON: False-Negative Aware Learning of Contrastive Negatives in Vision-Language Pretraining",
     authors: ["Myunsoo Kim*", "Seongwoong Shim*", "Byung-Jun Lee"],
     venue: "Conference on Computer Vision and Pattern Recognition (CVPR 2026)",
@@ -60,7 +62,8 @@ const SELECTED = [
 const OTHER = [
   {
     id: "J1",
-    short: "ECML PKDD 2026",   // text shown in the badge
+    short: "ECML PKDD 2026",   // venue text (shown in the placeholder until a thumbnail exists)
+    thumb: "assets/img/pubs/J1.png",
     title: "Neural MCTS with LLM Guidance for Effective Program Synthesis on Abstraction and Reasoning Corpus",
     authors: ["Jinwoo Jeon", "Seongwoong Shim", "Sejin Kim", "Sundong Kim", "Byung-Jun Lee"],
     venue: "Machine Learning (ECML PKDD 2026 Journal Track), 2026",
@@ -72,7 +75,8 @@ const OTHER = [
   },
   {
     id: "C4",
-    short: "NeurIPS 2025",   // text shown in the badge
+    short: "NeurIPS 2025",   // venue text (shown in the placeholder until a thumbnail exists)
+    thumb: "assets/img/pubs/C4.png",
     title: "Prior-Guided Diffusion Planning for Offline Reinforcement Learning",
     authors: ["Donghyeon Ki", "JunHyeok Oh", "Seongwoong Shim", "Byung-Jun Lee"],
     venue: "Neural Information Processing Systems (NeurIPS 2025)",
@@ -83,7 +87,8 @@ const OTHER = [
   },
   {
     id: "C3",
-    short: "ICML 2025",   // text shown in the badge
+    short: "ICML 2025",   // venue text (shown in the placeholder until a thumbnail exists)
+    thumb: "assets/img/pubs/C3.png",
     title: "NBDI: A Simple and Effective Termination Condition for Skill Extraction from Task-Agnostic Demonstrations",
     authors: ["Myunsoo Kim*", "Hayeong Lee*", "Seongwoong Shim", "JunHo Seo", "Byung-Jun Lee"],
     venue: "International Conference on Machine Learning (ICML 2025)",
@@ -94,7 +99,8 @@ const OTHER = [
   },
   {
     id: "C2",
-    short: "CVPR 2025",   // text shown in the badge
+    short: "CVPR 2025",   // venue text (shown in the placeholder until a thumbnail exists)
+    thumb: "assets/img/pubs/C2.png",
     title: "Adaptive Non-Uniform Timestep Sampling for Accelerating Diffusion Model Training",
     authors: ["Myunsoo Kim*", "Donghyeon Ki*", "Seongwoong Shim", "Byung-Jun Lee"],
     venue: "Conference on Computer Vision and Pattern Recognition (CVPR 2025)",
@@ -105,7 +111,8 @@ const OTHER = [
   },
   {
     id: "C1",
-    short: "ICPRAI 2024",   // text shown in the badge
+    short: "ICPRAI 2024",   // venue text (shown in the placeholder until a thumbnail exists)
+    thumb: "assets/img/pubs/C1.png",
     title: "Offline Imitation Learning by Controlling the Effective Planning Horizon",
     authors: ["Hee-Jun Ahn*", "Seongwoong Shim*", "Byung-Jun Lee"],
     venue: "International Conference on Pattern Recognition and Artificial Intelligence (ICPRAI 2024)",
