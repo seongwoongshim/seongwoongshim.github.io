@@ -190,11 +190,16 @@ p { margin: 0 0 16px; }
   .thumb { max-width: none; }
 }
 @media (max-width: 575px) {
-  h1 { font-size: 32px; }
+  h1 { font-size: 32px; text-align: center; }
   h2 { font-size: 26px; }
   h3 { font-size: 21px; }
+  /* phone: name, photo and the subtitle line are centred; the bio is justified */
   .about-row { flex-direction: column-reverse; gap: 20px; }
-  .profile { flex: none; width: 60%; max-width: 220px; aspect-ratio: 270 / 347; }
+  .profile { flex: none; width: 60%; max-width: 220px; aspect-ratio: 270 / 347; margin: 0 auto; }
+  .desc { text-align: center; }
+  .about-text > p:not(.desc):not(.contact) { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+  .contact { text-align: center; }
+  .socials { justify-content: center; }
   .navbar nav { gap: 14px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
