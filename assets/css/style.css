@@ -187,7 +187,7 @@ p { margin: 0 0 16px; }
   .row { flex-direction: column; }
   .col-thumb, .col-body { flex: 1 1 auto; max-width: 100%; }
   .col-thumb { margin-bottom: 8px; }
-  .thumb { max-width: 240px; }
+  .thumb { max-width: none; }
 }
 @media (max-width: 575px) {
   h1 { font-size: 32px; }
