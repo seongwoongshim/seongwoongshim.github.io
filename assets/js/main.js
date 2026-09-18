@@ -21,10 +21,10 @@
   /* header */
   $("#desc").innerHTML   = PROFILE.desc;
   $("#email").textContent = PROFILE.email;
-  $("#socials").innerHTML = PROFILE.links.map((l) => {
-    const ext = /^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : "";
-    return `<li><a href="${esc(l.url)}"${ext}>${esc(l.label)}</a></li>`;
-  }).join("");
+  /* every link in this row leaves the page (external site or the PDF), so all open in a new tab */
+  $("#socials").innerHTML = PROFILE.links.map((l) =>
+    `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a></li>`
+  ).join("");
 
   /* profile photo: the image when it loads, a labelled placeholder when it does not */
   if (PROFILE.photo) {
