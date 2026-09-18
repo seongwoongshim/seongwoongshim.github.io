@@ -10,8 +10,8 @@ const SITE = {
 const PROFILE = {
   name:  "Seongwoong Shim",
   // the line under the name; a couple of links are allowed here
-  desc: 'Ph.D. Candidate, <a href="https://gsai.korea.ac.kr" target="_blank" rel="noopener">Department of Artificial Intelligence</a>, Korea University &nbsp;·&nbsp; ' +
-        '<a href="https://dmlab.korea.ac.kr" target="_blank" rel="noopener">Decision Making Lab</a>',
+  desc: 'Ph.D. Candidate, Department of AI, Korea University &nbsp;·&nbsp; ' +
+        '<a href="https://dmlab.korea.ac.kr" target="_blank" rel="noopener">Decision Making Lab (DMLab)</a>',
   email: "ssw030830@korea.ac.kr",       // shown as plain text, not a link
   photo: "assets/img/profile.jpg",      // square image; set to "" to hide the photo entirely
   links: [
